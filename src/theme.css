@@ -956,6 +956,94 @@
   margin-top: 16px;
 }
 
+.promo-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.promo-row input {
+  flex: 1;
+  min-width: 0;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-btn);
+  font: inherit;
+  font-weight: 600;
+  color: var(--text);
+  background: #fff;
+  text-transform: uppercase;
+  transition: border-color 0.15s;
+}
+
+.promo-row input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.promo-row .btn {
+  width: auto;
+  margin-top: 0;
+  height: 42px;
+  padding: 0 16px;
+}
+
+.promo-applied {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px dashed var(--accent-line);
+  border-radius: var(--radius-btn);
+  background: var(--accent-soft);
+  font-size: 13px;
+  color: var(--accent-dark);
+}
+
+.promo-applied button {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  color: #b3261e;
+  cursor: pointer;
+}
+
+.promo-applied button:hover {
+  text-decoration: underline;
+}
+
+.promo-error {
+  margin: -4px 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #b3261e;
+}
+
+.promo-code {
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px dashed var(--accent-line);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.promo-code:hover {
+  background: var(--accent-line);
+  border-color: var(--accent);
+}
+
 .summary-note {
   margin: 12px 0 0;
   font-size: 12px;

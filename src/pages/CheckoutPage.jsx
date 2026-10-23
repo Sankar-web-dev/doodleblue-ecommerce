@@ -10,6 +10,7 @@ import {
   SHIPPING_COST,
 } from '../store/cartSlice/slice'
 import { placeOrder } from '../store/ordersSlice/slice'
+import { isValidPromo, promoDiscount, promoShipping, PROMO_CODES } from '../data/promos'
 import { selectUser } from '../store/authSlice/slice'
 import { formatPrice } from '../utils/money'
 import EmptyState from '../components/EmptyState'
@@ -23,14 +24,43 @@ function CheckoutPage() {
   const subtotal = useSelector(selectTotalPrice)
   const user = useSelector(selectUser)
   const [placed, setPlaced] = useState(false)
+  const [promo, setPromo] = useState(null)
+  const [promoInput, setPromoInput] = useState('')
+  const [promoError, setPromoError] = useState('')
 
   const shipping = subtotal >= FREE_SHIPPING_MIN ? 0 : SHIPPING_COST
-  const total = subtotal + shipping
+  const discount = promoDiscount(promo, subtotal)
+  const finalShipping = promoShipping(promo, shipping)
+  const total = subtotal + finalShipping - discount
+
+  const applyCode = (code) => {
+    setPromo(code)
+    setPromoInput('')
+    setPromoError('')
+  }
+
+  const applyPromo = () => {
+    const code = promoInput.trim().toUpperCase()
+    if (!code) return
+    if (!isValidPromo(code)) {
+      setPromoError(`"${code}" is not a valid promo code.`)
+      return
+    }
+    applyCode(code)
+  }
 
   const submitOrder = (e) => {
     e.preventDefault()
     dispatch(
-      placeOrder({ email: user?.email ?? 'guest', items, subtotal, shipping, total })
+      placeOrder({
+        email: user?.email ?? 'guest',
+        items,
+        subtotal,
+        shipping: finalShipping,
+        discount,
+        promo,
+        total,
+      })
     )
     dispatch(clearCart())
     setPlaced(true)
@@ -166,6 +196,44 @@ function CheckoutPage() {
 
         <aside className="card summary">
           <h2>Order summary</h2>
+
+          {promo ? (
+            <div className="promo-applied">
+              <span>
+                <strong>{promo}</strong> · {PROMO_CODES[promo]}
+              </span>
+              <button type="button" onClick={() => setPromo(null)}>
+                Remove
+              </button>
+            </div>
+          ) : (
+            <div className="promo-row">
+              <input
+                type="text"
+                value={promoInput}
+                onChange={(e) => {
+                  setPromoInput(e.target.value)
+                  setPromoError('')
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    applyPromo()
+                  }
+                }}
+                placeholder="Promo code"
+              />
+              <button
+                type="button"
+                className="btn btn-outline"
+                onClick={applyPromo}
+              >
+                Apply
+              </button>
+            </div>
+          )}
+          {promoError && <p className="promo-error">{promoError}</p>}
+
           <div className="summary-row">
             <span>Items</span>
             <span>{totalItems}</span>
@@ -174,12 +242,18 @@ function CheckoutPage() {
             <span>Subtotal</span>
             <span>{formatPrice(subtotal)}</span>
           </div>
+          {discount > 0 && (
+            <div className="summary-row">
+              <span>Discount</span>
+              <span className="free">−{formatPrice(discount)}</span>
+            </div>
+          )}
           <div className="summary-row">
             <span>Shipping</span>
-            {shipping === 0 ? (
+            {finalShipping === 0 ? (
               <span className="free">FREE</span>
             ) : (
-              <span>{formatPrice(shipping)}</span>
+              <span>{formatPrice(finalShipping)}</span>
             )}
           </div>
           <div className="summary-total">
@@ -190,7 +264,23 @@ function CheckoutPage() {
             Place order
           </button>
           <p className="summary-note">
-            Free shipping on orders of {formatPrice(FREE_SHIPPING_MIN)} or more.
+            Free shipping on orders of {formatPrice(FREE_SHIPPING_MIN)} or
+            more. Try{' '}
+            <button
+              type="button"
+              className="promo-code"
+              onClick={() => applyCode('SAVE10')}
+            >
+              SAVE10
+            </button>{' '}
+            or{' '}
+            <button
+              type="button"
+              className="promo-code"
+              onClick={() => applyCode('FREESHIP')}
+            >
+              FREESHIP
+            </button>
           </p>
         </aside>
       </form>

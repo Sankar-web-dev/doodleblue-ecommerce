@@ -28,13 +28,16 @@ const ordersSlice = createSlice({
   initialState: { list: readJSON(ORDERS_KEY, []) },
   reducers: {
     placeOrder(state, action) {
-      const { email, items, subtotal, shipping, total } = action.payload
+      const { email, items, subtotal, shipping, discount = 0, promo, total } =
+        action.payload
       state.list.unshift({
         id: `SK-${Date.now().toString(36).toUpperCase()}`,
         email,
         items,
         subtotal,
         shipping,
+        discount,
+        promo,
         total,
         placedAt: Date.now(),
       })
