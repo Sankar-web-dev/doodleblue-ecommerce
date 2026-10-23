@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectTotalItems } from '../store/cartSlice/slice'
@@ -5,7 +6,15 @@ import { selectFavouriteCount } from '../store/favouritesSlice/slice'
 import { selectFilters, setSearch } from '../store/productsSlice/slice'
 import { logout, selectUser } from '../store/authSlice/slice'
 import { useTheme } from '../context/ThemeContext'
-import { CartIcon, HeartIcon, MoonIcon, SearchIcon, SunIcon } from './icons'
+import {
+  CartIcon,
+  CloseIcon,
+  HeartIcon,
+  MenuIcon,
+  MoonIcon,
+  SearchIcon,
+  SunIcon,
+} from './icons'
 
 function Header() {
   const navigate = useNavigate()
@@ -17,6 +26,12 @@ function Header() {
   const { search } = useSelector(selectFilters)
   const user = useSelector(selectUser)
   const { theme, toggleTheme } = useTheme()
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  // Close the mobile menu whenever the route changes
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [location.pathname])
 
   const onSearchChange = (e) => {
     dispatch(setSearch(e.target.value))
@@ -42,7 +57,7 @@ function Header() {
           />
         </div>
 
-        <nav className="header-nav">
+        <nav className={`header-nav ${menuOpen ? 'nav-open' : ''}`}>
           <Link to="/" className="nav-link">
             Products
           </Link>
@@ -95,6 +110,16 @@ function Header() {
             </Link>
           )}
         </nav>
+
+        <button
+          type="button"
+          className="cart-btn menu-btn"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? <CloseIcon size={18} /> : <MenuIcon size={18} />}
+        </button>
       </div>
     </header>
   )
