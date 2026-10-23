@@ -1,11 +1,11 @@
 import { Link } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  addToCart,
   decrease,
   increase,
   selectCartQty,
 } from '../store/cartSlice/slice'
+import { useAddToCart } from '../hooks/useAddToCart'
 import { formatPrice } from '../utils/money'
 import ProductImage from './ProductImage'
 import RatingStars from './RatingStars'
@@ -15,6 +15,7 @@ import FavouriteButton from './FavouriteButton'
 function ProductCard({ product }) {
   const dispatch = useDispatch()
   const qty = useSelector(selectCartQty(product.id))
+  const add = useAddToCart()
 
   return (
     <article className="card product-card">
@@ -32,7 +33,7 @@ function ProductCard({ product }) {
           <button
             type="button"
             className="btn btn-primary"
-            onClick={() => dispatch(addToCart({ product, qty: 1 }))}
+            onClick={() => add(product)}
           >
             Add to cart
           </button>

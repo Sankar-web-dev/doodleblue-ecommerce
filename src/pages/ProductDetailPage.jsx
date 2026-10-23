@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
 import { useDispatch } from 'react-redux'
-import { addToCart, FREE_SHIPPING_MIN } from '../store/cartSlice/slice'
+import { FREE_SHIPPING_MIN } from '../store/cartSlice/slice'
 import { setCategory } from '../store/productsSlice/slice'
 import { useProducts } from '../hooks/useProducts'
+import { useAddToCart } from '../hooks/useAddToCart'
 import { formatPrice } from '../utils/money'
 import ProductImage from '../components/ProductImage'
 import RatingStars from '../components/RatingStars'
@@ -21,6 +22,7 @@ function ProductDetailPage() {
 
   const [qty, setQty] = useState(1)
   const [activeThumb, setActiveThumb] = useState(0)
+  const add = useAddToCart()
 
   const product = items.find((p) => p.id === Number(id))
 
@@ -107,7 +109,7 @@ function ProductDetailPage() {
             <button
               type="button"
               className="btn btn-primary btn-lg"
-              onClick={() => dispatch(addToCart({ product, qty }))}
+              onClick={() => add(product, qty)}
             >
               <CartIcon size={18} />
               Add to cart

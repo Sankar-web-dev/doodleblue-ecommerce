@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectTotalItems } from '../store/cartSlice/slice'
 import { selectFavouriteCount } from '../store/favouritesSlice/slice'
 import { selectFilters, setSearch } from '../store/productsSlice/slice'
+import { logout, selectUser } from '../store/authSlice/slice'
 import { CartIcon, HeartIcon, SearchIcon } from './icons'
 
 function Header() {
@@ -13,6 +14,7 @@ function Header() {
   const totalItems = useSelector(selectTotalItems)
   const favCount = useSelector(selectFavouriteCount)
   const { search } = useSelector(selectFilters)
+  const user = useSelector(selectUser)
 
   const onSearchChange = (e) => {
     dispatch(setSearch(e.target.value))
@@ -52,6 +54,29 @@ function Header() {
             <span className="btn-label">Cart</span>
             <span className="cart-badge">{totalItems}</span>
           </Link>
+          {user ? (
+            <div className="user-menu">
+              <span className="header-avatar" title={user.name}>
+                {user.name
+                  .split(' ')
+                  .map((part) => part[0])
+                  .join('')
+                  .slice(0, 2)
+                  .toUpperCase()}
+              </span>
+              <button
+                type="button"
+                className="nav-link logout-btn"
+                onClick={() => dispatch(logout())}
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link to="/login" className="nav-link">
+              Login
+            </Link>
+          )}
         </nav>
       </div>
     </header>
