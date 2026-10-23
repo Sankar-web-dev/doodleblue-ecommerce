@@ -1,12 +1,12 @@
 const PASTELS = [
-  '#fce4d8',
-  '#dcebf7',
-  '#ddf0e4',
-  '#fceec9',
-  '#e4e4f2',
-  '#f7e3ee',
-  '#e3f2f0',
-  '#f0efeb',
+  '#f8e7d2',
+  '#e8efe2',
+  '#f4ead9',
+  '#e9eee6',
+  '#f6e9dc',
+  '#eaf0ea',
+  '#f3ecdf',
+  '#efeae0',
 ]
 
 function ProductImage({ product, className = '' }) {

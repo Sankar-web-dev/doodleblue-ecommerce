@@ -1,15 +1,15 @@
 :root {
-  --header-bg: #1b1f2a;
-  --accent: #c2410c;
-  --accent-dark: #9a3409;
-  --page-bg: #f6f7f9;
+  --header-bg: #123332;
+  --accent: #d97d1e;
+  --accent-dark: #b4650f;
+  --page-bg: #f7f4ee;
   --card-bg: #ffffff;
-  --border: #e4e7ee;
-  --text: #1b1f2a;
-  --muted: #5b6170;
-  --green: #1f6f5a;
-  --radius-card: 16px;
-  --radius-btn: 10px;
+  --border: #e8e2d4;
+  --text: #1e2a26;
+  --muted: #68756d;
+  --green: #20705a;
+  --radius-card: 18px;
+  --radius-btn: 12px;
 }
 
 * {
@@ -28,8 +28,8 @@ body {
 h1,
 h2,
 h3 {
-  font-family: 'Manrope', 'Inter', sans-serif;
-  font-weight: 800;
+  font-family: 'Fraunces', 'Inter', serif;
+  font-weight: 700;
   margin: 0;
 }
 

@@ -6,7 +6,7 @@ import ProductDetailPage from './pages/ProductDetailPage'
 import CartPage from './pages/CartPage'
 import FavouritesPage from './pages/FavouritesPage'
 import NotFoundPage from './pages/NotFoundPage'
-import './App.css'
+import './theme.css'
 
 function App() {
   return (
