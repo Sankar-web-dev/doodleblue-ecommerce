@@ -8,6 +8,7 @@ import CheckoutPage from './pages/CheckoutPage'
 import FavouritesPage from './pages/FavouritesPage'
 import AuthPage from './pages/AuthPage'
 import OrdersPage from './pages/OrdersPage'
+import ProfilePage from './pages/ProfilePage'
 import NotFoundPage from './pages/NotFoundPage'
 import './theme.css'
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/favourites" element={<FavouritesPage />} />
         <Route path="/login" element={<AuthPage />} />
         <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />

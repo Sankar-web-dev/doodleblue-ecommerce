@@ -61,14 +61,14 @@ function Header() {
           </Link>
           {user ? (
             <div className="user-menu">
-              <span className="header-avatar" title={user.name}>
+              <Link to="/profile" className="header-avatar" title="View profile">
                 {user.name
                   .split(' ')
                   .map((part) => part[0])
                   .join('')
                   .slice(0, 2)
                   .toUpperCase()}
-              </span>
+              </Link>
               <button
                 type="button"
                 className="nav-link logout-btn"
