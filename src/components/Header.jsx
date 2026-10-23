@@ -4,7 +4,8 @@ import { selectTotalItems } from '../store/cartSlice/slice'
 import { selectFavouriteCount } from '../store/favouritesSlice/slice'
 import { selectFilters, setSearch } from '../store/productsSlice/slice'
 import { logout, selectUser } from '../store/authSlice/slice'
-import { CartIcon, HeartIcon, SearchIcon } from './icons'
+import { useTheme } from '../context/ThemeContext'
+import { CartIcon, HeartIcon, MoonIcon, SearchIcon, SunIcon } from './icons'
 
 function Header() {
   const navigate = useNavigate()
@@ -15,6 +16,7 @@ function Header() {
   const favCount = useSelector(selectFavouriteCount)
   const { search } = useSelector(selectFilters)
   const user = useSelector(selectUser)
+  const { theme, toggleTheme } = useTheme()
 
   const onSearchChange = (e) => {
     dispatch(setSearch(e.target.value))
@@ -59,6 +61,16 @@ function Header() {
             <span className="btn-label">Cart</span>
             <span className="cart-badge">{totalItems}</span>
           </Link>
+          <button
+            type="button"
+            className="cart-btn theme-toggle"
+            onClick={toggleTheme}
+            aria-label={
+              theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'
+            }
+          >
+            {theme === 'light' ? <MoonIcon size={18} /> : <SunIcon size={18} />}
+          </button>
           {user ? (
             <div className="user-menu">
               <Link to="/profile" className="header-avatar" title="View profile">

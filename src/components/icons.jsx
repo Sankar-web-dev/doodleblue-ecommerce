@@ -74,6 +74,23 @@ export function CheckIcon({ size }) {
   )
 }
 
+export function MoonIcon({ size }) {
+  return (
+    <Svg size={size}>
+      <path d="M20 13.5A8 8 0 0 1 10.5 4a8 8 0 1 0 9.5 9.5z" />
+    </Svg>
+  )
+}
+
+export function SunIcon({ size }) {
+  return (
+    <Svg size={size}>
+      <circle cx="12" cy="12" r="4.5" />
+      <path d="M12 2v2.5M12 19.5V22M4.5 12H2M22 12h-2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8" />
+    </Svg>
+  )
+}
+
 export function HeartIcon({ size, filled = false }) {
   return (
     <Svg size={size} fill={filled ? 'currentColor' : 'none'}>

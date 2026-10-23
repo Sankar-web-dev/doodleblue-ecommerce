@@ -18,6 +18,36 @@
   --shadow-hover: 0 14px 30px -14px rgba(30, 42, 38, 0.22);
 }
 
+[data-theme='dark'] {
+  color-scheme: dark;
+  --header-bg: #0d2424;
+  --accent: #e08b34;
+  --accent-dark: #f0a351;
+  --accent-soft: #33291c;
+  --accent-line: #5c4a2e;
+  --page-bg: #141819;
+  --card-bg: #1d2426;
+  --border: #31393c;
+  --text: #eceae3;
+  --muted: #96a29c;
+  --green: #3d9e83;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 14px 30px -14px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme='dark'] .site-footer {
+  background: #161d1f;
+}
+
+[data-theme='dark'] .cat-btn-active,
+[data-theme='dark'] .cat-btn-active:hover,
+[data-theme='dark'] .page-active,
+[data-theme='dark'] .page-active:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
 .app-shell {
   min-height: 100vh;
   display: flex;
@@ -149,6 +179,13 @@
   border-color: rgba(255, 255, 255, 0.24);
 }
 
+.theme-toggle {
+  width: 42px;
+  padding: 0;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .cart-badge {
   background: var(--accent);
   color: #fff;
@@ -194,7 +231,7 @@
 }
 
 .btn-outline {
-  background: #fff;
+  background: var(--card-bg);
   border-color: var(--border);
   color: var(--text);
 }
@@ -233,7 +270,7 @@
   height: 38px;
   border-radius: 50%;
   border: 1px solid var(--border);
-  background: #fff;
+  background: var(--card-bg);
   color: var(--muted);
   cursor: pointer;
   display: inline-flex;
@@ -301,7 +338,7 @@
   padding: 0 36px 0 14px;
   border: 1px solid var(--border);
   border-radius: var(--radius-btn);
-  background: #fff;
+  background: var(--card-bg);
   font: inherit;
   color: var(--text);
   cursor: pointer;
@@ -323,7 +360,7 @@
   padding: 8px 16px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: #fff;
+  background: var(--card-bg);
   font-size: 13px;
   font-weight: 600;
   color: var(--text);
@@ -364,7 +401,7 @@
   padding: 0 12px;
   border-radius: var(--radius-btn);
   border: 1px solid var(--border);
-  background: #fff;
+  background: var(--card-bg);
   font-size: 14px;
   font-weight: 600;
   color: var(--text);
@@ -485,7 +522,7 @@
 .stars {
   position: relative;
   display: inline-block;
-  color: #ddd6c6;
+  color: var(--border);
   font-size: 14px;
   letter-spacing: 1px;
   line-height: 1;
@@ -514,7 +551,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-btn);
   height: 40px;
-  background: #fff;
+  background: var(--card-bg);
 }
 
 .stepper button {
@@ -833,7 +870,7 @@
   padding: 0 12px;
   border-radius: 9px;
   border: 1px solid var(--border);
-  background: #fff;
+  background: var(--card-bg);
   font-size: 12px;
   font-weight: 600;
   color: var(--text);
@@ -972,7 +1009,7 @@
   font: inherit;
   font-weight: 600;
   color: var(--text);
-  background: #fff;
+  background: var(--card-bg);
   text-transform: uppercase;
   transition: border-color 0.15s;
 }
@@ -1089,7 +1126,7 @@
   font: inherit;
   font-weight: 500;
   color: var(--text);
-  background: #fff;
+  background: var(--card-bg);
   transition: border-color 0.15s;
 }
 
@@ -1314,7 +1351,7 @@
   margin: 0 auto;
   border-radius: 50%;
   border: 2px solid var(--border);
-  background: #fff;
+  background: var(--card-bg);
   color: var(--muted);
   display: flex;
   align-items: center;
