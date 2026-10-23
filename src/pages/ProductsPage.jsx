@@ -13,6 +13,7 @@ import {
 } from '../store/productsSlice/slice'
 import { useProducts } from '../hooks/useProducts'
 import ProductCard from '../components/ProductCard'
+import ProductCardSkeleton from '../components/ProductCardSkeleton'
 import Pagination from '../components/Pagination'
 
 function ProductsPage() {
@@ -68,7 +69,11 @@ function ProductsPage() {
       </div>
 
       {status === 'loading' && (
-        <p className="state-msg">Loading products...</p>
+        <div className="grid">
+          {Array.from({ length: 8 }, (_, i) => (
+            <ProductCardSkeleton key={i} />
+          ))}
+        </div>
       )}
 
       {status === 'failed' && (

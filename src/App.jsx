@@ -10,6 +10,7 @@ import AuthPage from './pages/AuthPage'
 import OrdersPage from './pages/OrdersPage'
 import ProfilePage from './pages/ProfilePage'
 import NotFoundPage from './pages/NotFoundPage'
+import Toasts from './components/Toasts'
 import './theme.css'
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
+      <Toasts />
     </div>
   )
 }

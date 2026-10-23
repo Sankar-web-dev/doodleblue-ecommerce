@@ -3,6 +3,7 @@ import {
   selectIsFavourite,
   toggleFavourite,
 } from '../store/favouritesSlice/slice'
+import { showToast } from '../store/toastSlice/slice'
 import { HeartIcon } from './icons'
 
 function FavouriteButton({ productId, className = '' }) {
@@ -19,6 +20,9 @@ function FavouriteButton({ productId, className = '' }) {
         e.preventDefault()
         e.stopPropagation()
         dispatch(toggleFavourite(productId))
+        dispatch(
+          showToast(isFav ? 'Removed from favourites' : 'Saved to favourites')
+        )
       }}
     >
       <HeartIcon size={18} filled={isFav} />

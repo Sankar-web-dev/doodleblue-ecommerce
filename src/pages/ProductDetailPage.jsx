@@ -29,7 +29,17 @@ function ProductDetailPage() {
   if (status === 'idle' || status === 'loading') {
     return (
       <main className="page">
-        <p className="state-msg">Loading product...</p>
+        <section className="card pdp" aria-hidden="true">
+          <div className="sk sk-gallery" />
+          <div>
+            <div className="sk sk-line w-30" />
+            <div className="sk sk-line w-70" />
+            <div className="sk sk-line w-40" />
+            <div className="sk sk-line w-90" />
+            <div className="sk sk-line w-60" />
+            <div className="sk sk-btn-lg" />
+          </div>
+        </section>
       </main>
     )
   }

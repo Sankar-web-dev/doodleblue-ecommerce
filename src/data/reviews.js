@@ -110,3 +110,13 @@ export function getReviewsForProduct(productId, count = 4) {
     (_, i) => REVIEWS[(start + i) % REVIEWS.length]
   )
 }
+
+// Star distribution for the product's own review set —
+// [{ stars: 5, count: n }, { stars: 4, count: n }, ...]
+export function getRatingBreakdown(productId, count = 4) {
+  const reviews = getReviewsForProduct(productId, count)
+  return [5, 4, 3, 2, 1].map((stars) => ({
+    stars,
+    count: reviews.filter((r) => r.rating === stars).length,
+  }))
+}
