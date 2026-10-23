@@ -1,0 +1,42 @@
+:root {
+  --header-bg: #1b1f2a;
+  --accent: #c2410c;
+  --accent-dark: #9a3409;
+  --page-bg: #f6f7f9;
+  --card-bg: #ffffff;
+  --border: #e4e7ee;
+  --text: #1b1f2a;
+  --muted: #5b6170;
+  --green: #1f6f5a;
+  --radius-card: 16px;
+  --radius-btn: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  background: var(--page-bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Manrope', 'Inter', sans-serif;
+  font-weight: 800;
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+}
+
+img {
+  display: block;
+}
