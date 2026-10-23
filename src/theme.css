@@ -1118,6 +1118,151 @@
   cursor: pointer;
 }
 
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-card {
+  padding: 22px;
+}
+
+.order-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.order-id {
+  display: block;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.order-date {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.order-total {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 0;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.order-thumb {
+  width: 56px;
+  height: 56px;
+  padding: 6px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  aspect-ratio: auto;
+}
+
+.order-item-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.order-item-meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.order-steps {
+  display: flex;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+
+.order-step {
+  flex: 1;
+  position: relative;
+  text-align: center;
+}
+
+.order-step::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: -50%;
+  width: 100%;
+  height: 2px;
+  background: var(--border);
+}
+
+.order-step:first-child::before {
+  display: none;
+}
+
+.order-step.step-done::before {
+  background: var(--green);
+}
+
+.step-dot {
+  position: relative;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: #fff;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.step-done .step-dot {
+  border-color: var(--green);
+  background: var(--green);
+  color: #fff;
+}
+
+.step-current .step-dot {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.step-label {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.step-done .step-label {
+  color: var(--text);
+}
+
+.success-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
 .empty-cart {
   padding: 76px 24px;
   text-align: center;

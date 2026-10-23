@@ -44,6 +44,11 @@ function Header() {
           <Link to="/" className="nav-link">
             Products
           </Link>
+          {user && (
+            <Link to="/orders" className="nav-link">
+              Orders
+            </Link>
+          )}
           <Link to="/favourites" className="cart-btn">
             <HeartIcon size={18} />
             <span className="btn-label">Saved</span>

@@ -9,6 +9,8 @@ import {
   FREE_SHIPPING_MIN,
   SHIPPING_COST,
 } from '../store/cartSlice/slice'
+import { placeOrder } from '../store/ordersSlice/slice'
+import { selectUser } from '../store/authSlice/slice'
 import { formatPrice } from '../utils/money'
 import EmptyState from '../components/EmptyState'
 import { CartIcon, CheckIcon } from '../components/icons'
@@ -19,13 +21,17 @@ function CheckoutPage() {
   const items = useSelector(selectCartItems)
   const totalItems = useSelector(selectTotalItems)
   const subtotal = useSelector(selectTotalPrice)
+  const user = useSelector(selectUser)
   const [placed, setPlaced] = useState(false)
 
   const shipping = subtotal >= FREE_SHIPPING_MIN ? 0 : SHIPPING_COST
   const total = subtotal + shipping
 
-  const placeOrder = (e) => {
+  const submitOrder = (e) => {
     e.preventDefault()
+    dispatch(
+      placeOrder({ email: user?.email ?? 'guest', items, subtotal, shipping, total })
+    )
     dispatch(clearCart())
     setPlaced(true)
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -43,13 +49,22 @@ function CheckoutPage() {
             Thank you for shopping with us. Your order is confirmed and will be
             shipped soon.
           </p>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => navigate('/')}
-          >
-            Continue shopping
-          </button>
+          <div className="success-actions">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => navigate('/orders')}
+            >
+              View my orders
+            </button>
+            <button
+              type="button"
+              className="btn btn-outline"
+              onClick={() => navigate('/')}
+            >
+              Continue shopping
+            </button>
+          </div>
         </div>
       </main>
     )
@@ -81,7 +96,7 @@ function CheckoutPage() {
         </Link>
       </div>
 
-      <form className="cart-layout" onSubmit={placeOrder}>
+      <form className="cart-layout" onSubmit={submitOrder}>
         <section className="card checkout-form">
           <h2>Shipping details</h2>
           <div className="field-row">
