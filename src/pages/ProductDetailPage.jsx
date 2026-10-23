@@ -10,6 +10,7 @@ import RatingStars from '../components/RatingStars'
 import QuantityStepper from '../components/QuantityStepper'
 import ProductCard from '../components/ProductCard'
 import FavouriteButton from '../components/FavouriteButton'
+import ProductReviews from '../components/ProductReviews'
 import { CartIcon, ReturnIcon, TruckIcon } from '../components/icons'
 
 function ProductDetailPage() {
@@ -130,6 +131,8 @@ function ProductDetailPage() {
           </p>
         </div>
       </section>
+
+      <ProductReviews productId={product.id} />
 
       {related.length > 0 && (
         <>
