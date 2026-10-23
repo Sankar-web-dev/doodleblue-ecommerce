@@ -50,7 +50,7 @@ function CartPage() {
         </EmptyState>
       ) : (
         <div className="cart-layout">
-          <section className="card cart-list">
+          <section className="cart-list">
             <div className="cart-list-head">
               <span>Product</span>
               <button

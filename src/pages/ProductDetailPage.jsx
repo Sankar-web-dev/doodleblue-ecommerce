@@ -70,7 +70,6 @@ function ProductDetailPage() {
 
       <section className="card pdp">
         <div className="pdp-gallery">
-          <ProductImage product={{ ...product, image: gallery[activeThumb] }} />
           <div className="thumbs">
             {gallery.map((img, i) => (
               <button
@@ -83,6 +82,7 @@ function ProductDetailPage() {
               </button>
             ))}
           </div>
+          <ProductImage product={{ ...product, image: gallery[activeThumb] }} />
         </div>
 
         <div className="pdp-info">
@@ -134,7 +134,7 @@ function ProductDetailPage() {
       {related.length > 0 && (
         <>
           <h2 className="section-title">You may also like</h2>
-          <div className="grid">
+          <div className="rail">
             {related.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
