@@ -66,6 +66,14 @@ export function ReturnIcon({ size }) {
   )
 }
 
+export function CheckIcon({ size }) {
+  return (
+    <Svg size={size}>
+      <path d="M4 12.5l5 5L20 6.5" />
+    </Svg>
+  )
+}
+
 export function HeartIcon({ size, filled = false }) {
   return (
     <Svg size={size} fill={filled ? 'currentColor' : 'none'}>

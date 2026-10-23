@@ -114,7 +114,11 @@ function CartPage() {
               <span>Total</span>
               <span>{formatPrice(total)}</span>
             </div>
-            <button type="button" className="btn btn-primary btn-lg">
+            <button
+              type="button"
+              className="btn btn-primary btn-lg"
+              onClick={() => navigate('/checkout')}
+            >
               Proceed to checkout
             </button>
             <p className="summary-note">
