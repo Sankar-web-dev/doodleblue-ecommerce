@@ -52,63 +52,56 @@ function ProductsPage() {
         </label>
       </div>
 
-      <div className="shop-layout">
-        <aside className="card shop-side">
-          <h3 className="side-title">Categories</h3>
-          <div className="cat-list">
-            {['all', ...categories].map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                className={`cat-btn ${
-                  filters.category === cat ? 'cat-btn-active' : ''
-                }`}
-                onClick={() => dispatch(setCategory(cat))}
-              >
-                {cat === 'all' ? 'All products' : cat}
-              </button>
+      <div className="cat-list">
+        {['all', ...categories].map((cat) => (
+          <button
+            key={cat}
+            type="button"
+            className={`cat-btn ${
+              filters.category === cat ? 'cat-btn-active' : ''
+            }`}
+            onClick={() => dispatch(setCategory(cat))}
+          >
+            {cat === 'all' ? 'All products' : cat}
+          </button>
+        ))}
+      </div>
+
+      {status === 'loading' && (
+        <p className="state-msg">Loading products...</p>
+      )}
+
+      {status === 'failed' && (
+        <div className="state-msg">
+          <p>Something went wrong while loading products. {error}</p>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => dispatch(fetchProducts())}
+          >
+            Try again
+          </button>
+        </div>
+      )}
+
+      {status === 'succeeded' && visible.length === 0 && (
+        <p className="state-msg">No products match your search.</p>
+      )}
+
+      {status === 'succeeded' && (
+        <>
+          <div className="grid">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
-        </aside>
-
-        <div className="shop-main">
-          {status === 'loading' && (
-            <p className="state-msg">Loading products...</p>
-          )}
-
-          {status === 'failed' && (
-            <div className="state-msg">
-              <p>Something went wrong while loading products. {error}</p>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => dispatch(fetchProducts())}
-              >
-                Try again
-              </button>
-            </div>
-          )}
-
-          {status === 'succeeded' && visible.length === 0 && (
-            <p className="state-msg">No products match your search.</p>
-          )}
-
-          {status === 'succeeded' && (
-            <>
-              <div className="grid">
-                {products.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-              <Pagination
-                page={page}
-                pageCount={pageCount}
-                onChange={goToPage}
-              />
-            </>
-          )}
-        </div>
-      </div>
+          <Pagination
+            page={page}
+            pageCount={pageCount}
+            onChange={goToPage}
+          />
+        </>
+      )}
     </main>
   )
 }
